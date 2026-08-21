@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App & General -->
+    <string name="app_name">Clock</string>
+    <string name="app_subtitle">Open UI Project</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="close">Close</string>
+    <string name="add">Add</string>
+    <string name="options">Options</string>
+    <string name="sort">Sort</string>
+
+    <!-- Navigation Tabs -->
+    <string name="tab_alarm">Alarm</string>
+    <string name="tab_world_clock">World Clock</string>
+    <string name="tab_stopwatch">Stopwatch</string>
+    <string name="tab_timer">Timer</string>
+
+    <!-- Options Menu -->
+    <string name="menu_about">About app</string>
+
+    <!-- Alarm Screen -->
+    <string name="alarms_empty">No alarms</string>
+    <string name="alarm_delete_title">Delete alarm?</string>
+    <string name="alarm_delete_message">Alarm at %s will be deleted.</string>
+
+    <!-- Add/Edit Alarm Sheet -->
+    <string name="add_alarm_title">New alarm</string>
+    <string name="edit_alarm_title">Edit alarm</string>
+    <string name="alarm_label">Label</string>
+    <string name="alarm_label_hint">Alarm name</string>
+    <string name="alarm_repeat">Repeat</string>
+    <string name="alarm_sound">Sound</string>
+    <string name="alarm_vibrate">Vibration</string>
+    <string name="alarm_snooze">Snooze</string>
+
+    <!-- Repeat Days -->
+    <string name="repeat_once">Once</string>
+    <string name="repeat_everyday">Every day</string>
+    <string name="repeat_weekdays">Weekdays</string>
+    <string name="repeat_weekends">Weekends</string>
+    <string name="day_mon">Mon</string>
+    <string name="day_tue">Tue</string>
+    <string name="day_wed">Wed</string>
+    <string name="day_thu">Thu</string>
+    <string name="day_fri">Fri</string>
+    <string name="day_sat">Sat</string>
+    <string name="day_sun">Sun</string>
+
+    <!-- Sounds -->
+    <string name="sound_default">Default</string>
+    <string name="sound_none">Silent</string>
+    <string name="sound_select_from_storage">Select from storage...</string>
+    <string name="sound_selection_title">Select sound</string>
+
+    <!-- World Clock -->
+    <string name="world_clock_title">World Clock</string>
+    <string name="search_city_title">Search city</string>
+    <string name="search_city_hint">Enter city name...</string>
+    <string name="no_cities_found">No cities found</string>
+    <string name="local_timezone">Local time zone</string>
+    <string name="same_time">Same time</string>
+    <string name="hours_short">h.</string>
+    <string name="minutes_short">min.</string>
+    <string name="earlier">%s earlier</string>
+    <string name="later">%s later</string>
+    <string name="yesterday">, Yesterday</string>
+    <string name="tomorrow">, Tomorrow</string>
+    <string name="tz_yekaterinburg">Yekaterinburg, standard time</string>
+    <string name="tz_moscow">Moscow, standard time</string>
+
+    <!-- Stopwatch -->
+    <string name="stopwatch_start">Start</string>
+    <string name="stopwatch_pause">Pause</string>
+    <string name="stopwatch_lap">Lap</string>
+    <string name="stopwatch_reset">Reset</string>
+    <string name="stopwatch_lap_prefix">Lap %d</string>
+
+    <!-- Timer -->
+    <string name="timer_hours_label">h.</string>
+    <string name="timer_minutes_label">min.</string>
+    <string name="timer_seconds_label">sec.</string>
+    <string name="timer_start">Start</string>
+    <string name="timer_pause">Pause</string>
+    <string name="timer_cancel">Cancel</string>
+    <string name="timer_reset">Reset</string>
+    <string name="timer_finished_title">Timer finished!</string>
+    <string name="timer_syncing">Syncing alarms...</string>
+
+    <!-- About Dialog -->
+    <string name="about_title">About</string>
+    <string name="about_app_name">Clock</string>
+    <string name="about_by_prefix">App by </string>
+    <string name="about_brand_name">Open UI Project</string>
+    <string name="about_version_tag">v1.0.0 • Open Source</string>
+    <string name="about_description_p1">Our goal is to create a free, open-source and modern clock app inspired by the convenience of One UI, but without proprietary restrictions.</string>
+    <string name="about_description_p2">The application is open source, completely free of telemetry and data collection, and developed transparently together with the community. Join the development!</string>
+    <string name="about_description_p3">Clock — freedom, openness, and convenience in one app.</string>
+    <string name="about_open_source">Open source</string>
+    <string name="about_no_tracking">No tracking</string>
+    <string name="about_community">Community</string>
+    <string name="about_github_btn">Project GitHub</string>
+
+    <!-- Ringing Alarm -->
+    <string name="alarm_ringing_title">Alarm</string>
+    <string name="alarm_snooze_btn">Snooze</string>
+    <string name="alarm_dismiss_btn">Dismiss</string>
+
+    <!-- Time Remaining & Selection -->
+    <string name="alarm_rings_in">Alarm rings in %s</string>
+    <string name="time_remaining_format_days_hours_mins">%1$d d %2$d h %3$d min</string>
+    <string name="time_remaining_format_hours_mins">%1$d h %2$d min</string>
+    <string name="time_remaining_format_mins">%1$d min</string>
+    <string name="time_remaining_format_less_than_minute">less than 1 min</string>
+    <string name="alarm_selected_count">Selected: %d</string>
+    <string name="select_all">Select all</string>
+    <string name="deselect_all">Deselect all</string>
+
+    <!-- Notification Channels -->
+    <string name="channel_alarm_name">Alarm Notifications</string>
+    <string name="channel_alarm_desc">Channel for alarm ringing and screen alerts</string>
+    <string name="channel_timer_name">Timer Notifications</string>
+    <string name="channel_timer_desc">Channel for timer countdowns and finish alerts</string>
+    <string name="channel_world_clock_name">World Clock Notifications</string>
+    <string name="channel_world_clock_desc">Channel for world clock updates and alerts</string>
+    <string name="channel_stopwatch_name">Stopwatch Notifications</string>
+    <string name="channel_stopwatch_desc">Channel for running stopwatch controls</string>
+
+    <!-- Notification Titles & Actions -->
+    <string name="notification_alarm_title">Alarm</string>
+    <string name="notification_timer_title">Timer</string>
+    <string name="notification_stopwatch_title">Stopwatch</string>
+    <string name="notification_action_pause">Pause</string>
+    <string name="notification_action_resume">Resume</string>
+    <string name="notification_action_lap">Lap</string>
+    <string name="notification_action_reset">Reset</string>
+</resources>

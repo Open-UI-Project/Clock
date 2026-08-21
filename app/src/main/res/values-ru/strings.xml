@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App & General -->
+    <string name="app_name">Часы</string>
+    <string name="app_subtitle">Open UI Project</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="close">Закрыть</string>
+    <string name="add">Добавить</string>
+    <string name="options">Опции</string>
+    <string name="sort">Сортировка</string>
+
+    <!-- Navigation Tabs -->
+    <string name="tab_alarm">Будильник</string>
+    <string name="tab_world_clock">Мировое время</string>
+    <string name="tab_stopwatch">Секундомер</string>
+    <string name="tab_timer">Таймер</string>
+
+    <!-- Options Menu -->
+    <string name="menu_about">О приложении</string>
+
+    <!-- Alarm Screen -->
+    <string name="alarms_empty">Нет будильников</string>
+    <string name="alarm_delete_title">Удалить будильник?</string>
+    <string name="alarm_delete_message">Будильник на %s будет удален.</string>
+
+    <!-- Add/Edit Alarm Sheet -->
+    <string name="add_alarm_title">Новый будильник</string>
+    <string name="edit_alarm_title">Редактировать будильник</string>
+    <string name="alarm_label">Название</string>
+    <string name="alarm_label_hint">Название будильника</string>
+    <string name="alarm_repeat">Повтор</string>
+    <string name="alarm_sound">Звук</string>
+    <string name="alarm_vibrate">Вибрация</string>
+    <string name="alarm_snooze">Отложить</string>
+
+    <!-- Repeat Days -->
+    <string name="repeat_once">Однократно</string>
+    <string name="repeat_everyday">Каждый день</string>
+    <string name="repeat_weekdays">Будни</string>
+    <string name="repeat_weekends">Выходные</string>
+    <string name="day_mon">Пн</string>
+    <string name="day_tue">Вт</string>
+    <string name="day_wed">Ср</string>
+    <string name="day_thu">Чт</string>
+    <string name="day_fri">Пт</string>
+    <string name="day_sat">Сб</string>
+    <string name="day_sun">Вс</string>
+
+    <!-- Sounds -->
+    <string name="sound_default">По умолчанию</string>
+    <string name="sound_none">Без звука</string>
+    <string name="sound_select_from_storage">Выбрать из памяти...</string>
+    <string name="sound_selection_title">Выберите звук</string>
+
+    <!-- World Clock -->
+    <string name="world_clock_title">Мировое время</string>
+    <string name="search_city_title">Поиск города</string>
+    <string name="search_city_hint">Введите название города...</string>
+    <string name="no_cities_found">Ничего не найдено</string>
+    <string name="local_timezone">Местный часовой пояс</string>
+    <string name="same_time">То же время</string>
+    <string name="hours_short">ч.</string>
+    <string name="minutes_short">мин.</string>
+    <string name="earlier">На %s раньше</string>
+    <string name="later">На %s позже</string>
+    <string name="yesterday">, Вчера</string>
+    <string name="tomorrow">, Завтра</string>
+    <string name="tz_yekaterinburg">Екатеринбург, стандартное время</string>
+    <string name="tz_moscow">Москва, стандартное время</string>
+
+    <!-- Stopwatch -->
+    <string name="stopwatch_start">Старт</string>
+    <string name="stopwatch_pause">Пауза</string>
+    <string name="stopwatch_lap">Круг</string>
+    <string name="stopwatch_reset">Сброс</string>
+    <string name="stopwatch_lap_prefix">Круг %d</string>
+
+    <!-- Timer -->
+    <string name="timer_hours_label">ч.</string>
+    <string name="timer_minutes_label">мин.</string>
+    <string name="timer_seconds_label">сек.</string>
+    <string name="timer_start">Начать</string>
+    <string name="timer_pause">Пауза</string>
+    <string name="timer_cancel">Отмена</string>
+    <string name="timer_reset">Сброс</string>
+    <string name="timer_finished_title">Таймер завершен!</string>
+    <string name="timer_syncing">Синхронизация будильников...</string>
+
+    <!-- About Dialog -->
+    <string name="about_title">О приложении</string>
+    <string name="about_app_name">Часы</string>
+    <string name="about_by_prefix">Приложение от </string>
+    <string name="about_brand_name">Open UI Project</string>
+    <string name="about_version_tag">v1.0.0 • Открытый исходный код</string>
+    <string name="about_description_p1">Наша цель — создать бесплатное, открытое и современное приложение для часов и будильников, вдохновлённое удобством One UI, но без проприетарных ограничений.</string>
+    <string name="about_description_p2">Приложение имеет открытый исходный код, полностью лишено телеметрии и сбора данных, и разрабатывается прозрачно вместе с сообществом. Присоединяйтесь к разработке!</string>
+    <string name="about_description_p3">Часы — свобода, открытость и удобство в одном приложении.</string>
+    <string name="about_open_source">Открытый код</string>
+    <string name="about_no_tracking">Без слежки</string>
+    <string name="about_community">Сообщество</string>
+    <string name="about_github_btn">GitHub проекта</string>
+
+    <!-- Ringing Alarm -->
+    <string name="alarm_ringing_title">Будильник</string>
+    <string name="alarm_snooze_btn">Отложить</string>
+    <string name="alarm_dismiss_btn">Отключить</string>
+
+    <!-- Time Remaining & Selection -->
+    <string name="alarm_rings_in">Будильник прозвонит через %s</string>
+    <string name="time_remaining_format_days_hours_mins">%1$d дн. %2$d ч. %3$d мин.</string>
+    <string name="time_remaining_format_hours_mins">%1$d ч. %2$d мин.</string>
+    <string name="time_remaining_format_mins">%1$d мин.</string>
+    <string name="time_remaining_format_less_than_minute">менее 1 мин.</string>
+    <string name="alarm_selected_count">Выбрано: %d</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="deselect_all">Снять выбор</string>
+
+    <!-- Notification Channels -->
+    <string name="channel_alarm_name">Уведомления будильника</string>
+    <string name="channel_alarm_desc">Канал для звонка будильника и полноэкранных сигналов</string>
+    <string name="channel_timer_name">Уведомления таймера</string>
+    <string name="channel_timer_desc">Канал для отсчета времени и окончания таймера</string>
+    <string name="channel_world_clock_name">Уведомления мирового времени</string>
+    <string name="channel_world_clock_desc">Канал для системных уведомлений и обновлений мировых часов</string>
+    <string name="channel_stopwatch_name">Уведомления секундомера</string>
+    <string name="channel_stopwatch_desc">Канал для фонового управления секундомером</string>
+
+    <!-- Notification Titles & Actions -->
+    <string name="notification_alarm_title">Будильник</string>
+    <string name="notification_timer_title">Таймер</string>
+    <string name="notification_stopwatch_title">Секундомер</string>
+    <string name="notification_action_pause">Пауза</string>
+    <string name="notification_action_resume">Продолжить</string>
+    <string name="notification_action_lap">Круг</string>
+    <string name="notification_action_reset">Сброс</string>
+</resources>
