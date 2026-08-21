@@ -22,14 +22,7 @@
 <a name="english"></a>
 
 
-
-
-
-
-<img width="1080" height="2226" alt="IMG_20260821_193139" src="https://github.com/user-attachments/assets/aa1e1efe-61d7-49b0-9248-b19a88c83482" />  <img width="1080" height="2228" alt="IMG_20260821_193153" src="https://github.com/user-attachments/assets/c353b681-b0fd-4700-820c-9c92e2b4fc95" />
-
-<img width="1080" height="2220" alt="IMG_20260821_193203" src="https://github.com/user-attachments/assets/a2167b4e-f723-4e4a-ac5e-3dc07ce0f72b" /> <img width="1080" height="2232" alt="IMG_20260821_193216" src="https://github.com/user-attachments/assets/ede971b9-8184-4d48-bbd8-a2e625ca5aaf" />
-
+<img width="3211" height="2207" alt="IMG_20260821_193203" src="https://github.com/user-attachments/assets/069078b0-1190-43a5-abc4-dec1e0ed0bbc" /> <img width="3211" height="2207" alt="IMG_20260821_193236" src="https://github.com/user-attachments/assets/f6375715-de50-4504-bb30-ce781f3b300b" />
 
 
 
