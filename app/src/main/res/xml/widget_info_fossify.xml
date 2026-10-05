@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_fossify_desc"
+    android:initialKeyguardLayout="@layout/widget_fossify_digital"
+    android:initialLayout="@layout/widget_fossify_digital"
+    android:minWidth="140dp"
+    android:minHeight="50dp"
+    android:minResizeWidth="100dp"
+    android:minResizeHeight="40dp"
+    android:previewImage="@drawable/widget_preview_fossify"
+    android:previewLayout="@layout/widget_fossify_digital"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="3"
+    android:targetCellHeight="2"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen|keyguard" />

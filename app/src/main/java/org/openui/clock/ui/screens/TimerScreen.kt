@@ -50,8 +50,7 @@ fun TimerScreen(
         ) {
             if (!hasActiveTimer) {
                 Spacer(modifier = Modifier.height(60.dp))
-                
-                // Labels
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -70,10 +69,9 @@ fun TimerScreen(
                         Text(text = stringResource(org.openui.clock.R.string.timer_seconds_label), color = Color.White.copy(alpha = 0.5f), fontSize = 16.sp)
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
-                // Pickers and colons
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -92,7 +90,7 @@ fun TimerScreen(
                         Spacer(modifier = Modifier.width(20.dp))
                         InfiniteNumberPicker(seconds, 0..59, { seconds = it }, Modifier.weight(1f))
                     }
-                    
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -106,10 +104,9 @@ fun TimerScreen(
                         Spacer(modifier = Modifier.weight(1f))
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(48.dp))
-                
-                // Presets
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -120,10 +117,9 @@ fun TimerScreen(
                     PresetButton("00:15:00") { hours = 0; minutes = 15; seconds = 0 }
                     PresetButton("00:30:00") { hours = 0; minutes = 30; seconds = 0 }
                 }
-                
+
                 Spacer(modifier = Modifier.weight(1f))
-                
-                // Start Button
+
                 Button(
                     onClick = {
                         val totalMs = (hours * 3600L + minutes * 60L + seconds) * 1000L
@@ -141,7 +137,7 @@ fun TimerScreen(
                 ) {
                     Text(stringResource(org.openui.clock.R.string.timer_start), fontSize = 18.sp, fontWeight = FontWeight.Medium)
                 }
-                
+
                 Spacer(modifier = Modifier.height(110.dp))
             } else {
                 val remHrs = (state.remainingMillis / 3600000) % 24
@@ -213,7 +209,7 @@ fun TimerScreen(
                         Text(if (state.isRunning) stringResource(org.openui.clock.R.string.timer_pause) else stringResource(org.openui.clock.R.string.timer_start), fontSize = 16.sp, fontWeight = FontWeight.Medium)
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(110.dp))
             }
         }

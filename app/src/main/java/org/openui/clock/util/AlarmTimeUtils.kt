@@ -24,7 +24,7 @@ object AlarmTimeUtils {
         val targetToday = now.withHour(hour).withMinute(minute).withSecond(0).withNano(0)
 
         if (daysOfWeek.isEmpty()) {
-            // One-time alarm: if today's time hasn't passed, ring today; otherwise tomorrow
+
             return if (targetToday.isAfter(now)) {
                 targetToday
             } else {
@@ -32,10 +32,9 @@ object AlarmTimeUtils {
             }
         }
 
-        // Repeating alarm on specific days of week (1=Mon..7=Sun)
         for (dayOffset in 0L..7L) {
             val candidate = targetToday.plusDays(dayOffset)
-            val candidateDayOfWeek = candidate.dayOfWeek.value // 1=Mon..7=Sun
+            val candidateDayOfWeek = candidate.dayOfWeek.value
             if (daysOfWeek.contains(candidateDayOfWeek)) {
                 if (candidate.isAfter(now)) {
                     return candidate
@@ -43,7 +42,6 @@ object AlarmTimeUtils {
             }
         }
 
-        // Fallback in case of exact boundary condition
         return targetToday.plusDays(7)
     }
 

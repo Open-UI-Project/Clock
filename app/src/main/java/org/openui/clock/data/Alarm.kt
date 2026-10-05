@@ -15,7 +15,7 @@ data class Alarm(
     val minute: Int,
     val label: String = "",
     val isEnabled: Boolean = true,
-    val daysOfWeek: String = "", // Comma-separated days, e.g. "1,2,3,4,5" (1=Mon..7=Sun), empty = once
+    val daysOfWeek: String = "",
     val vibrate: Boolean = true,
     val vibratePattern: String = "default",
     val soundName: String = "default",

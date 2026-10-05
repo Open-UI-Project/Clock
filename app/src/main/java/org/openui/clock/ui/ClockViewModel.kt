@@ -67,17 +67,14 @@ class ClockViewModel(application: Application) : AndroidViewModel(application) {
             initialValue = emptyList()
         )
 
-    // Stopwatch State
     private val _stopwatchState = MutableStateFlow(StopwatchState())
     val stopwatchState: StateFlow<StopwatchState> = _stopwatchState.asStateFlow()
     private var stopwatchJob: Job? = null
 
-    // Timer State
     private val _timerState = MutableStateFlow(TimerState())
     val timerState: StateFlow<TimerState> = _timerState.asStateFlow()
     private var timerJob: Job? = null
 
-    // Alarm actions
     fun addAlarm(alarm: Alarm) {
         viewModelScope.launch {
             repository.addAlarm(alarm)
@@ -102,7 +99,6 @@ class ClockViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // World Clock actions
     fun addCity(city: WorldClockCity) {
         viewModelScope.launch {
             repository.addCity(city)
@@ -115,7 +111,6 @@ class ClockViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Stopwatch logic
     fun startStopwatch() {
         if (_stopwatchState.value.isRunning) return
         _stopwatchState.value = _stopwatchState.value.copy(isRunning = true)
@@ -164,7 +159,6 @@ class ClockViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Timer logic
     fun startTimer(durationMillis: Long) {
         pauseTimer()
         _timerState.value = TimerState(
@@ -202,8 +196,7 @@ class ClockViewModel(application: Application) : AndroidViewModel(application) {
                         isFinished = true
                     )
                     ClockNotificationManager.cancelTimerNotification(getApplication())
-                    
-                    // Trigger ringing service
+
                     val intent = android.content.Intent(getApplication(), org.openui.clock.alarm.AlarmReceiver::class.java).apply {
                         action = org.openui.clock.alarm.AlarmReceiver.ACTION_TIMER_FINISHED
                     }

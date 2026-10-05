@@ -73,12 +73,11 @@ fun SoundSelectionDialog(
 
     LaunchedEffect(Unit) {
         soundList.clear()
-        // Default built-in / system sound
+
         soundList.add(SoundItem("По умолчанию", ""))
         soundList.add(SoundItem("Cesium", ""))
         soundList.add(SoundItem("Platinum", ""))
 
-        // Query system ringtones
         try {
             val ringtoneManager = RingtoneManager(context).apply {
                 setType(RingtoneManager.TYPE_ALARM)
@@ -179,7 +178,6 @@ fun SoundSelectionDialog(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Select from device button
                 OutlinedButton(
                     onClick = { audioPickerLauncher.launch(arrayOf("audio/*")) },
                     shape = RoundedCornerShape(16.dp),

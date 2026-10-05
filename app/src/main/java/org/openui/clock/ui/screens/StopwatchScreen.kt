@@ -42,7 +42,7 @@ fun StopwatchScreen(
             .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Pager for Clock Face
+
         Box(
             modifier = Modifier.weight(1.2f),
             contentAlignment = Alignment.Center
@@ -59,7 +59,6 @@ fun StopwatchScreen(
             }
         }
 
-        // Pager Indicator
         Row(
             modifier = Modifier.padding(top = 28.dp, bottom = 36.dp),
             horizontalArrangement = Arrangement.Center
@@ -75,7 +74,6 @@ fun StopwatchScreen(
             }
         }
 
-        // Buttons
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -83,7 +81,7 @@ fun StopwatchScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Left Button (Interval/Reset)
+
             StopwatchButton(
                 text = if (state.isRunning) stringResource(org.openui.clock.R.string.stopwatch_lap) else stringResource(org.openui.clock.R.string.stopwatch_reset),
                 backgroundColor = Color(0xFF2A2B36),
@@ -92,7 +90,6 @@ fun StopwatchScreen(
                 enabled = state.isRunning || state.elapsedMillis > 0
             )
 
-            // Right Button (Start/Stop)
             StopwatchButton(
                 text = if (state.isRunning) stringResource(org.openui.clock.R.string.stopwatch_pause) else stringResource(org.openui.clock.R.string.stopwatch_start),
                 backgroundColor = if (state.isRunning) Color(0xFF3D1B1B) else Color(0xFF3B3B6D),
@@ -101,7 +98,6 @@ fun StopwatchScreen(
             )
         }
 
-        // Laps List
         if (state.laps.isNotEmpty()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
@@ -160,21 +156,19 @@ fun AnalogFace(state: StopwatchState) {
             val radius = size.minDimension / 2f
             val center = Offset(size.width / 2f, size.height / 2f)
 
-            // Background
             drawCircle(
                 color = Color(0xFF1E1F28),
                 radius = radius,
                 center = center
             )
 
-            // Ticks
             for (i in 0 until 60) {
                 val angle = (i * 6f - 90f) * (Math.PI / 180f).toFloat()
                 val isMajorTick = i % 5 == 0
                 val tickLength = if (isMajorTick) 16.dp.toPx() else 8.dp.toPx()
                 val tickThickness = if (isMajorTick) 2.dp.toPx() else 1.dp.toPx()
                 val tickColor = if (isMajorTick) Color.White.copy(alpha = 0.8f) else Color.White.copy(alpha = 0.4f)
-                
+
                 val startX = center.x + (radius - tickLength - 8.dp.toPx()) * cos(angle)
                 val startY = center.y + (radius - tickLength - 8.dp.toPx()) * sin(angle)
                 val endX = center.x + (radius - 8.dp.toPx()) * cos(angle)
@@ -189,14 +183,12 @@ fun AnalogFace(state: StopwatchState) {
                 )
             }
 
-            // Sweep hand
             val totalSecondsFloat = (state.elapsedMillis % 60000) / 1000f
             val handAngle = ((totalSecondsFloat / 60f) * 360f - 90f) * (Math.PI / 180f).toFloat()
-            
+
             val handEndX = center.x + (radius - 12.dp.toPx()) * cos(handAngle)
             val handEndY = center.y + (radius - 12.dp.toPx()) * sin(handAngle)
 
-            // Outer hand tail
             val tailEndX = center.x - (20.dp.toPx()) * cos(handAngle)
             val tailEndY = center.y - (20.dp.toPx()) * sin(handAngle)
 
@@ -207,14 +199,13 @@ fun AnalogFace(state: StopwatchState) {
                 strokeWidth = 2.dp.toPx(),
                 cap = StrokeCap.Round
             )
-            
+
             drawCircle(
                 color = Color(0xFF7C3AED),
                 radius = 5.dp.toPx(),
                 center = center
             )
-            
-            // Inner black dot
+
             drawCircle(
                 color = Color(0xFF1E1F28),
                 radius = 2.dp.toPx(),
@@ -222,7 +213,6 @@ fun AnalogFace(state: StopwatchState) {
             )
         }
 
-        // Text in the middle
         Text(
             text = String.format("%02d:%02d,%02d", minutes, seconds, millis),
             style = MaterialTheme.typography.displayMedium.copy(
@@ -279,8 +269,8 @@ fun StopwatchButton(
         contentPadding = PaddingValues(0.dp)
     ) {
         Text(
-            text = text, 
-            fontSize = 16.sp, 
+            text = text,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Medium
         )
     }

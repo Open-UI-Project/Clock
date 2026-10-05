@@ -14,6 +14,21 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="org.breezyweather.READ_PROVIDER" />
+
+    <queries>
+        <package android:name="org.breezyweather" />
+        <package android:name="org.breezyweather.debug" />
+        <package android:name="org.breezyweather.nightly" />
+        <package android:name="org.breezyweather.fdroid" />
+        <intent>
+            <action android:name="nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -34,6 +49,30 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_CLOCK" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SHOW_ALARMS" />
+                <action android:name="android.intent.action.SET_ALARM" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SHOW_TIMERS" />
+                <action android:name="android.intent.action.SET_TIMER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SHOW_STOPWATCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SHOW_CLOCK" />
+                <action android:name="android.intent.action.QUICK_CLOCK" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -82,6 +121,76 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Alarm and timer trigger execution" />
         </service>
+
+        <receiver
+            android:name="org.openui.clock.widget.DigitalWeatherClockWidgetProvider"
+            android:label="@string/empty_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_samsung" />
+        </receiver>
+
+        <receiver
+            android:name="org.openui.clock.widget.OnePlusClockWidgetProvider"
+            android:label="@string/empty_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_oneplus" />
+        </receiver>
+
+        <receiver
+            android:name="org.openui.clock.widget.FossifyClockWidgetProvider"
+            android:label="@string/empty_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_fossify" />
+        </receiver>
+
+        <receiver
+            android:name="org.openui.clock.widget.CompactClockWidgetProvider"
+            android:label="@string/empty_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_compact" />
+        </receiver>
+
+        <receiver
+            android:name="org.openui.clock.widget.AnalogClockWidgetProvider"
+            android:label="@string/empty_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_analog" />
+        </receiver>
+
+        <receiver
+            android:name="org.openui.clock.weather.WeatherUpdateReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER" />
+                <action android:name="org.breezyweather.ACTION_UPDATE_NOTIFIER" />
+                <action android:name="org.breezyweather.debug.ACTION_UPDATE_NOTIFIER" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

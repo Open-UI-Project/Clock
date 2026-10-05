@@ -51,7 +51,7 @@ private val IconBgColor = Color(0xFF1B2030)
 fun AboutDialog(onDismiss: () -> Unit) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
-    
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -69,7 +69,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                     .padding(horizontal = 20.dp, vertical = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Header with Close Button
+
                 Box(
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -91,8 +91,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
-                
-                // Logo
+
                 Box(
                     modifier = Modifier
                         .size(76.dp)
@@ -111,9 +110,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         color = Color.White
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 Text(
                     text = stringResource(org.openui.clock.R.string.app_name),
                     style = MaterialTheme.typography.headlineMedium.copy(
@@ -121,9 +120,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         color = Color.White
                     )
                 )
-                
+
                 Spacer(modifier = Modifier.height(4.dp))
-                
+
                 val prefix = stringResource(org.openui.clock.R.string.about_by_prefix)
                 val brand = stringResource(org.openui.clock.R.string.about_brand_name)
                 val subtitle = remember {
@@ -137,10 +136,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                     }
                 }
                 Text(text = subtitle, fontSize = 15.sp)
-                
+
                 Spacer(modifier = Modifier.height(14.dp))
-                
-                // Pill
+
                 Box(
                     modifier = Modifier
                         .background(PillBgColor, CircleShape)
@@ -153,10 +151,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         fontWeight = FontWeight.SemiBold
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(20.dp))
-                
-                // Text content card
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -178,7 +175,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                             style = textStyle
                         )
                         Spacer(modifier = Modifier.height(14.dp))
-                        
+
                         val desc3 = stringResource(org.openui.clock.R.string.about_description_p3)
                         val bottomText = remember {
                             buildAnnotatedString {
@@ -194,10 +191,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         )
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
-                // Info Cards Row
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -218,10 +214,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         modifier = Modifier.weight(1f)
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(20.dp))
-                
-                // GitHub Button
+
                 Button(
                     onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Open-UI-Project/Clock"))
@@ -252,10 +247,9 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         )
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(12.dp))
-                
-                // Close text button
+
                 Text(
                     text = stringResource(org.openui.clock.R.string.close),
                     color = Color.White.copy(alpha = 0.6f),

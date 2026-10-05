@@ -2,9 +2,10 @@ package org.openui.clock.data
 
 import android.content.Context
 import org.openui.clock.alarm.AlarmScheduler
+import org.openui.clock.widget.ClockWidgetManager
 import kotlinx.coroutines.flow.Flow
 
-class ClockRepository(context: Context) {
+class ClockRepository(private val context: Context) {
 
     private val db = ClockDatabase.getDatabase(context)
     private val dao = db.clockDao()
@@ -19,6 +20,7 @@ class ClockRepository(context: Context) {
         if (createdAlarm.isEnabled) {
             scheduler.schedule(createdAlarm)
         }
+        ClockWidgetManager.updateAllWidgets(context)
     }
 
     suspend fun updateAlarm(alarm: Alarm) {
@@ -28,6 +30,7 @@ class ClockRepository(context: Context) {
         } else {
             scheduler.cancel(alarm)
         }
+        ClockWidgetManager.updateAllWidgets(context)
     }
 
     suspend fun toggleAlarm(alarm: Alarm, enabled: Boolean) {
@@ -38,11 +41,13 @@ class ClockRepository(context: Context) {
         } else {
             scheduler.cancel(updated)
         }
+        ClockWidgetManager.updateAllWidgets(context)
     }
 
     suspend fun deleteAlarm(alarm: Alarm) {
         scheduler.cancel(alarm)
         dao.deleteAlarm(alarm)
+        ClockWidgetManager.updateAllWidgets(context)
     }
 
     suspend fun addCity(city: WorldClockCity) {

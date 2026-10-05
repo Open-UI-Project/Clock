@@ -73,7 +73,7 @@ class AlarmActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         closeReceiver = object : android.content.BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 if (intent?.action == "org.openui.clock.CLOSE_ALARM_ACTIVITY") {
@@ -158,8 +158,8 @@ class AlarmActivity : ComponentActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || 
-            keyCode == KeyEvent.KEYCODE_VOLUME_UP || 
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN ||
+            keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
             keyCode == KeyEvent.KEYCODE_POWER) {
             if (isTimer) {
                 dismissAlarm()
@@ -283,7 +283,7 @@ private fun AlarmScreenContent(
                 .align(Alignment.BottomCenter),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Big Circular Dismiss / Stop Button
+
             Box(
                 modifier = Modifier
                     .size(90.dp)
@@ -304,7 +304,7 @@ private fun AlarmScreenContent(
             Spacer(modifier = Modifier.height(48.dp))
 
             if (!isTimer) {
-                // Bottom Snooze Pill
+
                 Surface(
                     shape = RoundedCornerShape(32.dp),
                     color = Color.White.copy(alpha = 0.22f),

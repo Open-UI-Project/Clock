@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <AnalogClock
+        android:id="@+id/analog_clock_view"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:dial="@drawable/widget_analog_dial"
+        android:hand_hour="@drawable/widget_analog_hour"
+        android:hand_minute="@drawable/widget_analog_minute" />
+
+    <TextClock
+        android:id="@+id/analog_text_clock_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="sans-serif-medium"
+        android:format12Hour="EEE, d MMM"
+        android:format24Hour="EEE, d MMM"
+        android:includeFontPadding="false"
+        android:shadowColor="#D9000000"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="6"
+        android:textColor="#E2E8F0"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:id="@+id/layout_alarm_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/analog_alarm_icon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:contentDescription="@string/tab_alarm"
+            android:src="@drawable/ic_alarm_widget" />
+
+        <TextView
+            android:id="@+id/analog_alarm_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:shadowColor="#80000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:text="@string/widget_alarm_off"
+            android:textColor="#C7D2FE"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

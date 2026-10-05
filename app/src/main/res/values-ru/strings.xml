@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App & General -->
+
     <string name="app_name">Часы</string>
+    <string name="empty_label"></string>
     <string name="app_subtitle">Open UI Project</string>
     <string name="ok">ОК</string>
     <string name="cancel">Отмена</string>
@@ -12,21 +13,44 @@
     <string name="options">Опции</string>
     <string name="sort">Сортировка</string>
 
-    <!-- Navigation Tabs -->
     <string name="tab_alarm">Будильник</string>
     <string name="tab_world_clock">Мировое время</string>
     <string name="tab_stopwatch">Секундомер</string>
     <string name="tab_timer">Таймер</string>
 
-    <!-- Options Menu -->
     <string name="menu_about">О приложении</string>
+    <string name="menu_widgets">Виджеты на экран</string>
 
-    <!-- Alarm Screen -->
+    <string name="widget_samsung_name">Часы</string>
+    <string name="widget_samsung_desc">Цифровые часы с живой погодой и ближайшим будильником</string>
+    <string name="widget_oneplus_name">Часы</string>
+    <string name="widget_oneplus_desc">Минималистичные часы с акцентом и живой погодой</string>
+    <string name="widget_fossify_name">Часы</string>
+    <string name="widget_fossify_desc">Чистые прозрачные цифровые часы с датой и будильником без фона</string>
+    <string name="widget_compact_name">Часы</string>
+    <string name="widget_compact_desc">Компактные часы в одну строку с датой, погодой и будильником</string>
+    <string name="widget_analog_name">Часы</string>
+    <string name="widget_analog_desc">Минималистичный циферблат со стрелками, датой и будильником</string>
+    <string name="widget_alarm_off">Отключен</string>
+    <string name="widget_weather_title">Погода</string>
+    <string name="widget_weather_tap_to_connect">Нажмите для настройки</string>
+    <string name="widgets_hub_title">Виджеты и Погода</string>
+    <string name="widgets_hub_subtitle">Виджеты для рабочего стола с поддержкой Breezy Weather</string>
+    <string name="widgets_pin_to_home">Добавить на главный экран</string>
+    <string name="breezy_status_title">Интеграция с Breezy Weather</string>
+    <string name="breezy_installed">Breezy Weather установлено</string>
+    <string name="breezy_not_installed">Breezy Weather не установлено</string>
+    <string name="breezy_instruction">Чтобы включить синхронизацию, в Breezy Weather откройте: Настройки → Виджеты и живые обои → Обмен данными → Включить.</string>
+    <string name="breezy_open_app">Открыть Breezy Weather</string>
+    <string name="breezy_refresh_now">Обновить данные погоды</string>
+    <string name="breezy_last_updated">Обновлено: %s</string>
+    <string name="breezy_no_data_yet">Данные о погоде пока не получены</string>
+    <string name="breezy_connected">Погода подключена</string>
+
     <string name="alarms_empty">Нет будильников</string>
     <string name="alarm_delete_title">Удалить будильник?</string>
     <string name="alarm_delete_message">Будильник на %s будет удален.</string>
 
-    <!-- Add/Edit Alarm Sheet -->
     <string name="add_alarm_title">Новый будильник</string>
     <string name="edit_alarm_title">Редактировать будильник</string>
     <string name="alarm_label">Название</string>
@@ -36,7 +60,6 @@
     <string name="alarm_vibrate">Вибрация</string>
     <string name="alarm_snooze">Отложить</string>
 
-    <!-- Repeat Days -->
     <string name="repeat_once">Однократно</string>
     <string name="repeat_everyday">Каждый день</string>
     <string name="repeat_weekdays">Будни</string>
@@ -49,13 +72,11 @@
     <string name="day_sat">Сб</string>
     <string name="day_sun">Вс</string>
 
-    <!-- Sounds -->
     <string name="sound_default">По умолчанию</string>
     <string name="sound_none">Без звука</string>
     <string name="sound_select_from_storage">Выбрать из памяти...</string>
     <string name="sound_selection_title">Выберите звук</string>
 
-    <!-- World Clock -->
     <string name="world_clock_title">Мировое время</string>
     <string name="search_city_title">Поиск города</string>
     <string name="search_city_hint">Введите название города...</string>
@@ -71,14 +92,12 @@
     <string name="tz_yekaterinburg">Екатеринбург, стандартное время</string>
     <string name="tz_moscow">Москва, стандартное время</string>
 
-    <!-- Stopwatch -->
     <string name="stopwatch_start">Старт</string>
     <string name="stopwatch_pause">Пауза</string>
     <string name="stopwatch_lap">Круг</string>
     <string name="stopwatch_reset">Сброс</string>
     <string name="stopwatch_lap_prefix">Круг %d</string>
 
-    <!-- Timer -->
     <string name="timer_hours_label">ч.</string>
     <string name="timer_minutes_label">мин.</string>
     <string name="timer_seconds_label">сек.</string>
@@ -89,12 +108,11 @@
     <string name="timer_finished_title">Таймер завершен!</string>
     <string name="timer_syncing">Синхронизация будильников...</string>
 
-    <!-- About Dialog -->
     <string name="about_title">О приложении</string>
     <string name="about_app_name">Часы</string>
     <string name="about_by_prefix">Приложение от </string>
     <string name="about_brand_name">Open UI Project</string>
-    <string name="about_version_tag">v1.0.0 • Открытый исходный код</string>
+    <string name="about_version_tag">v2.0.0 • Открытый исходный код</string>
     <string name="about_description_p1">Наша цель — создать бесплатное, открытое и современное приложение для часов и будильников, вдохновлённое удобством One UI, но без проприетарных ограничений.</string>
     <string name="about_description_p2">Приложение имеет открытый исходный код, полностью лишено телеметрии и сбора данных, и разрабатывается прозрачно вместе с сообществом. Присоединяйтесь к разработке!</string>
     <string name="about_description_p3">Часы — свобода, открытость и удобство в одном приложении.</string>
@@ -103,12 +121,10 @@
     <string name="about_community">Сообщество</string>
     <string name="about_github_btn">GitHub проекта</string>
 
-    <!-- Ringing Alarm -->
     <string name="alarm_ringing_title">Будильник</string>
     <string name="alarm_snooze_btn">Отложить</string>
     <string name="alarm_dismiss_btn">Отключить</string>
 
-    <!-- Time Remaining & Selection -->
     <string name="alarm_rings_in">Будильник прозвонит через %s</string>
     <string name="time_remaining_format_days_hours_mins">%1$d дн. %2$d ч. %3$d мин.</string>
     <string name="time_remaining_format_hours_mins">%1$d ч. %2$d мин.</string>
@@ -118,7 +134,6 @@
     <string name="select_all">Выбрать все</string>
     <string name="deselect_all">Снять выбор</string>
 
-    <!-- Notification Channels -->
     <string name="channel_alarm_name">Уведомления будильника</string>
     <string name="channel_alarm_desc">Канал для звонка будильника и полноэкранных сигналов</string>
     <string name="channel_timer_name">Уведомления таймера</string>
@@ -128,7 +143,6 @@
     <string name="channel_stopwatch_name">Уведомления секундомера</string>
     <string name="channel_stopwatch_desc">Канал для фонового управления секундомером</string>
 
-    <!-- Notification Titles & Actions -->
     <string name="notification_alarm_title">Будильник</string>
     <string name="notification_timer_title">Таймер</string>
     <string name="notification_stopwatch_title">Секундомер</string>

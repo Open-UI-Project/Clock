@@ -2,4 +2,5 @@
   "name": "Часы",
   "description": "Полностью открытое и автономное приложение Часы с будильником, мировым временем, секундомером и таймером в стиле Material 3.",
   "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

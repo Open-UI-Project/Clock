@@ -24,7 +24,6 @@ object ClockNotificationManager {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            // 1. Alarm Channel
             val alarmChannel = NotificationChannel(
                 CHANNEL_ALARM,
                 context.getString(R.string.channel_alarm_name),
@@ -35,7 +34,6 @@ object ClockNotificationManager {
                 enableLights(true)
             }
 
-            // 2. Timer Channel
             val timerChannel = NotificationChannel(
                 CHANNEL_TIMER,
                 context.getString(R.string.channel_timer_name),
@@ -44,7 +42,6 @@ object ClockNotificationManager {
                 description = context.getString(R.string.channel_timer_desc)
             }
 
-            // 3. World Clock Channel
             val worldClockChannel = NotificationChannel(
                 CHANNEL_WORLD_CLOCK,
                 context.getString(R.string.channel_world_clock_name),
@@ -53,7 +50,6 @@ object ClockNotificationManager {
                 description = context.getString(R.string.channel_world_clock_desc)
             }
 
-            // 4. Stopwatch Channel
             val stopwatchChannel = NotificationChannel(
                 CHANNEL_STOPWATCH,
                 context.getString(R.string.channel_stopwatch_name),
@@ -80,7 +76,6 @@ object ClockNotificationManager {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Actions
         val toggleActionText = context.getString(
             if (isRunning) R.string.notification_action_pause else R.string.notification_action_resume
         )

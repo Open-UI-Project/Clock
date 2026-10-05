@@ -135,13 +135,11 @@ private fun AddAlarmContent(
     var showVibrationDialog by remember { mutableStateOf(false) }
     var showSnoozeDialog by remember { mutableStateOf(false) }
 
-    // Selected repeat days (1=Mon..7=Sun)
     val initialDays = remember(initialAlarm) {
         initialAlarm?.daysOfWeek?.split(",")?.mapNotNull { it.trim().toIntOrNull() }?.toSet() ?: emptySet()
     }
     var selectedDays by remember { mutableStateOf(initialDays) }
 
-    // Compute preview date (e.g. "Сегодня-пн, 21 авг." or "Пт, 25 авг.")
     val dateText by remember(selectedHour, selectedMinute, selectedDays) {
         derivedStateOf {
             AlarmTimeUtils.getAlarmDatePreviewText(selectedHour, selectedMinute, selectedDays)
@@ -182,7 +180,7 @@ private fun AddAlarmContent(
                 } catch (e: Exception) {
                     try {
                         context.startActivity(Intent(Settings.ACTION_SETTINGS))
-                    } catch (_: Exception) {}
+                    } catch (e: Exception) {}
                 }
             }
         }
@@ -203,7 +201,7 @@ private fun AddAlarmContent(
             snoozeDurationMinutes = 5,
             snoozeTimes = 3
         )
-        
+
         Toast.makeText(
             context,
             AlarmTimeUtils.getAlarmRingsInMessage(context, selectedHour, selectedMinute, selectedDays),
@@ -224,7 +222,7 @@ private fun AddAlarmContent(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            // Top Bar with Back Arrow ONLY
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -261,7 +259,7 @@ private fun AddAlarmContent(
                     .padding(horizontal = 20.dp, vertical = 12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Time Wheel Picker Display (05 59 / 06 : 00 / 07 01)
+
                 TimeWheelPicker(
                     hour = selectedHour,
                     minute = selectedMinute,
@@ -271,7 +269,6 @@ private fun AddAlarmContent(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                // Remaining time indicator pill
                 Surface(
                     shape = CircleShape,
                     color = Color(0xFF2C2D35).copy(alpha = 0.6f)
@@ -295,7 +292,6 @@ private fun AddAlarmContent(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Main Settings Card
                 Card(
                     shape = CardShape,
                     colors = CardDefaults.cardColors(
@@ -308,7 +304,7 @@ private fun AddAlarmContent(
                             .fillMaxWidth()
                             .padding(20.dp)
                     ) {
-                        // Header Row: Date & Calendar Icon
+
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -343,7 +339,6 @@ private fun AddAlarmContent(
 
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        // Day of Week Selector
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -377,7 +372,7 @@ private fun AddAlarmContent(
                                         color = if (isSelected) {
                                             Color.White
                                         } else if (dayNum == 7) {
-                                            Color(0xFFEF4444).copy(alpha = 0.75f) // Sunday
+                                            Color(0xFFEF4444).copy(alpha = 0.75f)
                                         } else {
                                             Color.White.copy(alpha = 0.45f)
                                         }
@@ -388,7 +383,6 @@ private fun AddAlarmContent(
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        // Alarm Label Field
                         OutlinedTextField(
                             value = label,
                             onValueChange = { label = it },
@@ -405,7 +399,6 @@ private fun AddAlarmContent(
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        // Item 1: Sound
                         SettingToggleRow(
                             title = stringResource(org.openui.clock.R.string.alarm_sound),
                             subtitle = soundName,
@@ -419,7 +412,6 @@ private fun AddAlarmContent(
                             modifier = Modifier.padding(vertical = 12.dp)
                         )
 
-                        // Item 2: Vibration
                         SettingToggleRow(
                             title = stringResource(org.openui.clock.R.string.alarm_vibrate),
                             subtitle = vibratePattern,
@@ -433,7 +425,6 @@ private fun AddAlarmContent(
                             modifier = Modifier.padding(vertical = 12.dp)
                         )
 
-                        // Item 3: Snooze / Pause
                         SettingToggleRow(
                             title = stringResource(org.openui.clock.R.string.alarm_snooze),
                             subtitle = snoozeSubtitle,
@@ -447,7 +438,6 @@ private fun AddAlarmContent(
                 Spacer(modifier = Modifier.height(20.dp))
             }
 
-            // Fixed Bottom Action Pill [ Отмена | Сохранить ]
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -562,7 +552,7 @@ private fun TimeWheelPicker(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Hours Column (Independently Scrollable with LazyColumn + snap fling)
+
         TimeWheelColumn(
             value = hour,
             count = 24,
@@ -570,7 +560,6 @@ private fun TimeWheelPicker(
             alignment = Alignment.End
         )
 
-        // Center Colon
         Box(
             modifier = Modifier
                 .height(64.dp)
@@ -586,7 +575,6 @@ private fun TimeWheelPicker(
             )
         }
 
-        // Minutes Column (Independently Scrollable with LazyColumn + snap fling)
         TimeWheelColumn(
             value = minute,
             count = 60,

@@ -156,7 +156,6 @@ fun AlarmScreen(
             }
         }
 
-        // Animated Bottom Selection Action Pill
         AnimatedVisibility(
             visible = isSelectionMode,
             enter = fadeIn() + slideInVertically { it },
@@ -180,7 +179,7 @@ fun AlarmScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    // Cancel button
+
                     TextButton(
                         onClick = {
                             isSelectionMode = false
@@ -195,7 +194,6 @@ fun AlarmScreen(
                         )
                     }
 
-                    // Select / Deselect All
                     val allSelected = alarms.isNotEmpty() && selectedAlarmIds.size == alarms.size
                     TextButton(
                         onClick = {
@@ -214,7 +212,6 @@ fun AlarmScreen(
                         )
                     }
 
-                    // Delete Button
                     Button(
                         onClick = {
                             val toDelete = alarms.filter { selectedAlarmIds.contains(it.id) }
@@ -318,7 +315,7 @@ private fun AlarmItemCard(
                 .padding(horizontal = 20.dp, vertical = 18.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Animated Selection Checkbox on the Left
+
             AnimatedVisibility(
                 visible = isSelectionMode,
                 enter = fadeIn() + expandHorizontally(),
@@ -382,7 +379,6 @@ private fun AlarmItemCard(
                 )
             }
 
-            // Animated Switch on the Right
             AnimatedVisibility(
                 visible = !isSelectionMode,
                 enter = fadeIn() + expandHorizontally(),

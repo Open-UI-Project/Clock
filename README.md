@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="128" height="128" alt="OpenUI Clock Logo" />
+<img width="512" height="512" alt="icont" src="https://github.com/user-attachments/assets/b5989583-56f1-41d7-b760-074e6f9c1053" />
+
 
 # OpenUI Clock
 
@@ -19,6 +20,12 @@
 </div>
 
 <a name="english"></a>
+
+
+<img width="3211" height="2207" alt="IMG_20260821_193203" src="https://github.com/user-attachments/assets/069078b0-1190-43a5-abc4-dec1e0ed0bbc" /> <img width="3211" height="2207" alt="IMG_20260821_193236" src="https://github.com/user-attachments/assets/f6375715-de50-4504-bb30-ce781f3b300b" />
+
+
+
 ## English
 
 ### Overview

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,6 +40,8 @@ import org.openui.clock.ui.screens.AlarmScreen
 import org.openui.clock.ui.screens.StopwatchScreen
 import org.openui.clock.ui.screens.TimerScreen
 import org.openui.clock.ui.screens.WorldClockScreen
+import org.openui.clock.weather.BreezyWeatherHelper
+import org.openui.clock.widget.ClockWidgetManager
 import android.provider.Settings
 import android.net.Uri
 import android.Manifest
@@ -46,13 +49,13 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import android.view.WindowManager
 import org.openui.clock.ui.theme.ClockAppTheme
 
 class MainActivity : ComponentActivity() {
 
     private val viewModel: ClockViewModel by viewModels()
     private var ringingLabelState = mutableStateOf<String?>(null)
+    private var requestedTabState = mutableStateOf<ClockTab?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,13 +68,20 @@ class MainActivity : ComponentActivity() {
         }
 
         checkAndRequestPermissions()
-
-        checkRingingIntent(intent)
+        handleIntent(intent)
+        ClockWidgetManager.updateAllWidgets(this)
 
         setContent {
             ClockAppTheme {
                 var selectedTab by remember { mutableStateOf(ClockTab.ALARM) }
                 var showAboutDialog by remember { mutableStateOf(false) }
+
+                LaunchedEffect(requestedTabState.value) {
+                    requestedTabState.value?.let {
+                        selectedTab = it
+                        requestedTabState.value = null
+                    }
+                }
 
                 val alarms by viewModel.alarms.collectAsStateWithLifecycle()
                 val cities by viewModel.cities.collectAsStateWithLifecycle()
@@ -82,7 +92,7 @@ class MainActivity : ComponentActivity() {
 
                 var showAddAlarmSheet by remember { mutableStateOf(false) }
                 var showAddCityDialog by remember { mutableStateOf(false) }
-                var isAlarmSelectionMode by remember { mutableStateOf(false) }
+                var isSelectionMode by remember { mutableStateOf(false) }
 
                 Box(
                     modifier = Modifier
@@ -115,119 +125,174 @@ class MainActivity : ComponentActivity() {
                         containerColor = Color.Transparent,
                         contentWindowInsets = androidx.compose.foundation.layout.WindowInsets(0, 0, 0, 0),
                         topBar = {
-
                             TopClockHeader(
                                 title = stringResource(selectedTab.titleRes),
-                                onAddClick = if (!isAlarmSelectionMode) {
+                                onAddClick = if (!isSelectionMode) {
                                     when (selectedTab) {
                                         ClockTab.ALARM -> { { showAddAlarmSheet = true } }
                                         ClockTab.WORLD_CLOCK -> { { showAddCityDialog = true } }
                                         else -> null
                                     }
                                 } else null,
-                                onMoreClick = { showAboutDialog = true }
+                                onAboutClick = { showAboutDialog = true }
                             )
                         }
                     ) { innerPadding ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ) {
-                        Column(modifier = Modifier.fillMaxSize()) {
-                        androidx.compose.animation.AnimatedContent(
-                            targetState = selectedTab,
-                            label = "tab_transition",
-                            transitionSpec = {
-                                androidx.compose.animation.fadeIn() togetherWith androidx.compose.animation.fadeOut()
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(innerPadding)
+                        ) {
+                            Column(modifier = Modifier.fillMaxSize()) {
+                                androidx.compose.animation.AnimatedContent(
+                                    targetState = selectedTab,
+                                    label = "tab_transition",
+                                    transitionSpec = {
+                                        androidx.compose.animation.fadeIn() togetherWith androidx.compose.animation.fadeOut()
+                                    }
+                                ) { tab ->
+                                    when (tab) {
+                                        ClockTab.ALARM -> AlarmScreen(
+                                            alarms = alarms,
+                                            onToggleAlarm = viewModel::toggleAlarm,
+                                            onAddAlarm = viewModel::addAlarm,
+                                            onUpdateAlarm = viewModel::updateAlarm,
+                                            onDeleteAlarm = viewModel::deleteAlarm,
+                                            externalShowAddSheet = showAddAlarmSheet,
+                                            onExternalShowAddSheetHandled = { showAddAlarmSheet = false },
+                                            onSelectionModeChange = { isSelectionMode = it }
+                                        )
+                                        ClockTab.WORLD_CLOCK -> WorldClockScreen(
+                                            cities = cities,
+                                            onAddCity = viewModel::addCity,
+                                            onDeleteCity = viewModel::deleteCity,
+                                            externalShowAddDialog = showAddCityDialog,
+                                            onExternalShowAddDialogHandled = { showAddCityDialog = false },
+                                            onSelectionModeChange = { isSelectionMode = it }
+                                        )
+                                        ClockTab.STOPWATCH -> StopwatchScreen(
+                                            state = stopwatchState,
+                                            onStart = viewModel::startStopwatch,
+                                            onPause = viewModel::pauseStopwatch,
+                                            onReset = viewModel::resetStopwatch,
+                                            onLap = viewModel::lapStopwatch
+                                        )
+                                        ClockTab.TIMER -> TimerScreen(
+                                            state = timerState,
+                                            onStart = viewModel::startTimer,
+                                            onResume = viewModel::resumeTimer,
+                                            onPause = viewModel::pauseTimer,
+                                            onReset = viewModel::resetTimer
+                                        )
+                                    }
+                                }
                             }
-                        ) { tab ->
-                            when (tab) {
-                                ClockTab.ALARM -> AlarmScreen(
-                                    alarms = alarms,
-                                    onToggleAlarm = viewModel::toggleAlarm,
-                                    onAddAlarm = viewModel::addAlarm,
-                                    onUpdateAlarm = viewModel::updateAlarm,
-                                    onDeleteAlarm = viewModel::deleteAlarm,
-                                    externalShowAddSheet = showAddAlarmSheet,
-                                    onExternalShowAddSheetHandled = { showAddAlarmSheet = false },
-                                    onSelectionModeChange = { isAlarmSelectionMode = it }
-                                )
-                                ClockTab.WORLD_CLOCK -> WorldClockScreen(
-                                    cities = cities,
-                                    onAddCity = viewModel::addCity,
-                                    onDeleteCity = viewModel::deleteCity,
-                                    externalShowAddDialog = showAddCityDialog,
-                                    onExternalShowAddDialogHandled = { showAddCityDialog = false }
-                                )
-                                ClockTab.STOPWATCH -> StopwatchScreen(
-                                    state = stopwatchState,
-                                    onStart = viewModel::startStopwatch,
-                                    onPause = viewModel::pauseStopwatch,
-                                    onReset = viewModel::resetStopwatch,
-                                    onLap = viewModel::lapStopwatch
-                                )
-                                ClockTab.TIMER -> TimerScreen(
-                                    state = timerState,
-                                    onStart = viewModel::startTimer,
-                                    onResume = viewModel::resumeTimer,
-                                    onPause = viewModel::pauseTimer,
-                                    onReset = viewModel::resetTimer
+
+                            androidx.compose.animation.AnimatedVisibility(
+                                visible = !isSelectionMode,
+                                enter = androidx.compose.animation.fadeIn() + androidx.compose.animation.slideInVertically { it },
+                                exit = androidx.compose.animation.fadeOut() + androidx.compose.animation.slideOutVertically { it },
+                                modifier = Modifier.align(Alignment.BottomCenter)
+                            ) {
+                                FloatingPillNavBar(
+                                    selectedTab = selectedTab,
+                                    onTabSelected = {
+                                        isSelectionMode = false
+                                        selectedTab = it
+                                    }
                                 )
                             }
-                        }
                         }
 
-                        androidx.compose.animation.AnimatedVisibility(
-                            visible = !isAlarmSelectionMode || selectedTab != ClockTab.ALARM,
-                            enter = androidx.compose.animation.fadeIn() + androidx.compose.animation.slideInVertically { it },
-                            exit = androidx.compose.animation.fadeOut() + androidx.compose.animation.slideOutVertically { it },
-                            modifier = Modifier.align(Alignment.BottomCenter)
-                        ) {
-                            FloatingPillNavBar(
-                                selectedTab = selectedTab,
-                                onTabSelected = {
-                                    isAlarmSelectionMode = false
-                                    selectedTab = it
+                        if (showAboutDialog) {
+                            AboutDialog(onDismiss = { showAboutDialog = false })
+                        }
+
+                        ringingLabel?.let { label ->
+                            RingingAlarmDialog(
+                                alarmLabel = label,
+                                onSnooze = {
+                                    sendBroadcast(Intent(this@MainActivity, AlarmReceiver::class.java).apply {
+                                        action = AlarmReceiver.ACTION_SNOOZE
+                                    })
+                                    ringingLabelState.value = null
+                                },
+                                onDismiss = {
+                                    sendBroadcast(Intent(this@MainActivity, AlarmReceiver::class.java).apply {
+                                        action = AlarmReceiver.ACTION_DISMISS
+                                    })
+                                    ringingLabelState.value = null
                                 }
                             )
                         }
-                    }
-
-                    if (showAboutDialog) {
-                        AboutDialog(onDismiss = { showAboutDialog = false })
-                    }
-
-                    ringingLabel?.let { label ->
-                        RingingAlarmDialog(
-                            alarmLabel = label,
-                            onSnooze = {
-                                sendBroadcast(Intent(this@MainActivity, AlarmReceiver::class.java).apply {
-                                    action = AlarmReceiver.ACTION_SNOOZE
-                                })
-                                ringingLabelState.value = null
-                            },
-                            onDismiss = {
-                                sendBroadcast(Intent(this@MainActivity, AlarmReceiver::class.java).apply {
-                                    action = AlarmReceiver.ACTION_DISMISS
-                                })
-                                ringingLabelState.value = null
-                            }
-                        )
                     }
                 }
             }
         }
     }
-}
+
+    override fun onResume() {
+        super.onResume()
+        ClockWidgetManager.updateAllWidgets(this)
+    }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        handleIntent(intent)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if ((requestCode == 201 || requestCode == 301) && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            ClockWidgetManager.updateAllWidgets(this)
+        }
+    }
+
+    private fun handleIntent(intent: Intent?) {
         checkRingingIntent(intent)
+
+        when (intent?.action) {
+            "android.intent.action.SHOW_ALARMS",
+            "android.intent.action.SET_ALARM" -> requestedTabState.value = ClockTab.ALARM
+
+            "android.intent.action.SHOW_TIMERS",
+            "android.intent.action.SET_TIMER" -> requestedTabState.value = ClockTab.TIMER
+
+            "android.intent.action.SHOW_STOPWATCH" -> requestedTabState.value = ClockTab.STOPWATCH
+
+            "android.intent.action.SHOW_CLOCK",
+            "android.intent.action.QUICK_CLOCK" -> requestedTabState.value = ClockTab.WORLD_CLOCK
+        }
+
+        val tabExtra = intent?.getStringExtra(EXTRA_TAB)
+        if (!tabExtra.isNullBlinkOrEmpty()) {
+            when (tabExtra) {
+                "WORLD_CLOCK", "CLOCK" -> requestedTabState.value = ClockTab.WORLD_CLOCK
+                "ALARM" -> requestedTabState.value = ClockTab.ALARM
+                "STOPWATCH" -> requestedTabState.value = ClockTab.STOPWATCH
+                "TIMER" -> requestedTabState.value = ClockTab.TIMER
+            }
+        }
     }
 
     private fun checkAndRequestPermissions() {
+        val breezyPermission = "org.breezyweather.READ_PROVIDER"
+        if (BreezyWeatherHelper.isBreezyWeatherInstalled(this)) {
+            if (ContextCompat.checkSelfPermission(this, breezyPermission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(breezyPermission), 201)
+            }
+        }
+
+        val hasCoarse = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        if (!hasCoarse) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
+                301
+            )
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
                 try {
@@ -236,20 +301,20 @@ class MainActivity : ComponentActivity() {
                         Uri.parse("package:$packageName")
                     )
                     startActivity(intent)
-                } catch (_: Exception) {}
+                } catch (e: Exception) {}
             }
         }
         if (Build.VERSION.SDK_INT >= 34) {
             try {
                 val notificationManager = getSystemService(android.app.NotificationManager::class.java)
-                if (!notificationManager.canUseFullScreenIntent()) {
+                if (notificationManager != null && !notificationManager.canUseFullScreenIntent()) {
                     val intent = Intent(
                         Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT,
                         Uri.parse("package:$packageName")
                     )
                     startActivity(intent)
                 }
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
         }
     }
 
@@ -262,5 +327,9 @@ class MainActivity : ComponentActivity() {
 
     private fun String?.isNullBlinkOrEmpty(): Boolean {
         return this == null || this.isBlank()
+    }
+
+    companion object {
+        const val EXTRA_TAB = "EXTRA_TAB"
     }
 }

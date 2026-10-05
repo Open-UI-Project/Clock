@@ -31,7 +31,7 @@ data class WorldClockCity(
             val nowLocal = ZonedDateTime.now()
             val nowCity = ZonedDateTime.now(ZoneId.of(timeZoneId))
             val diffHours = (nowCity.offset.totalSeconds - nowLocal.offset.totalSeconds) / 3600
-            
+
             when {
                 diffHours == 0 -> "То же время"
                 diffHours > 0 -> "+$diffHours ч"
